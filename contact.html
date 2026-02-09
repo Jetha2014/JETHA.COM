@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | JETHA.COM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-outfit bg-white text-primary">
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-playfair font-black tracking-tighter">JETHA<span
+                    class="text-accent underline">.COM</span></a>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="index.html" class="hover:text-accent transition-colors">Home</a>
+                <a href="shop.html" class="hover:text-accent transition-colors">Shop</a>
+                <a href="contact.html" class="text-accent">Contact</a>
+            </div>
+            <a href="cart.html" class="p-2 relative">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                <span id="cart-count"
+                    class="absolute -top-1 -right-1 bg-accent text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <main class="pt-32 pb-24">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-playfair font-bold mb-6">Get in Touch</h1>
+                <p class="text-gray-500">Have a question about our products or your order? We're here to help.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-xl font-bold mb-8 italic font-playfair">Contact Information</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <p class="text-xs font-bold text-accent uppercase tracking-widest mb-2">Our Office</p>
+                            <p class="text-gray-600">Level 12, West Tower,<br>World Trade Center, Colombo 01,<br>Sri
+                                Lanka.</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-accent uppercase tracking-widest mb-2">Email Us</p>
+                            <p class="text-gray-600">hello@jetha.com<br>support@jetha.com</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-accent uppercase tracking-widest mb-2">Call Us</p>
+                            <p class="text-gray-600">+94 11 234 5678<br>Mon - Sat, 9am - 6pm</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <form id="contact-form" class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-gray-400 uppercase tracking-widest">Full Name</label>
+                            <input type="text" required
+                                class="w-full border-b border-gray-300 py-3 outline-none focus:border-accent transition-colors">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-gray-400 uppercase tracking-widest">Email
+                                Address</label>
+                            <input type="email" required
+                                class="w-full border-b border-gray-300 py-3 outline-none focus:border-accent transition-colors">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-gray-400 uppercase tracking-widest">Message</label>
+                            <textarea rows="4" required
+                                class="w-full border border-gray-200 p-4 outline-none focus:border-accent transition-colors text-sm"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-primary text-white py-4 font-bold hover:bg-accent transition-colors">
+                            SEND MESSAGE
+                        </button>
+                    </form>
+                    <div id="contact-success" class="hidden bg-green-50 p-6 text-green-700 text-center font-bold">
+                        Message sent successfully! We'll get back to you soon.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-soft py-12 border-t border-gray-200">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm text-gray-400">&copy; 2026 JETHA.COM. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('contact-form').classList.add('hidden');
+            document.getElementById('contact-success').classList.remove('hidden');
+        });
+    </script>
+</body>
+
+</html>

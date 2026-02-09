@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | JETHA.COM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a1a1a',
+                        accent: '#c5a059',
+                        soft: '#f9f6f2'
+                    },
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-outfit bg-white text-primary">
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center text-sm md:text-base">
+            <div class="flex items-center space-x-8">
+                <a href="index.html" class="text-2xl font-playfair font-black tracking-tighter">JETHA<span
+                        class="text-accent underline">.COM</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-accent transition-colors">Home</a>
+                    <a href="shop.html" class="hover:text-accent transition-colors">Shop</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="cart.html" class="relative group p-2 text-accent">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-accent text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <div class="pt-32 pb-12 bg-soft">
+        <div class="container mx-auto px-6">
+            <h1 class="text-3xl font-playfair font-bold">Shopping Cart</h1>
+        </div>
+    </div>
+
+    <!-- Cart Content -->
+    <main class="py-16">
+        <div class="container mx-auto px-6">
+            <div id="cart-container" class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Cart Items -->
+                <div class="lg:col-span-2">
+                    <div id="cart-items" class="space-y-6">
+                        <!-- Items injected here -->
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="bg-soft p-8 h-fit">
+                    <h2 class="text-xl font-bold mb-6">Order Summary</h2>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between text-gray-500">
+                            <span>Subtotal</span>
+                            <span id="subtotal">Rs. 0</span>
+                        </div>
+                        <div class="flex justify-between text-gray-500">
+                            <span>Shipping</span>
+                            <span id="shipping">Rs. 0</span>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200 flex justify-between font-bold text-lg">
+                            <span>Total</span>
+                            <span id="total">Rs. 0</span>
+                        </div>
+                    </div>
+                    <button id="checkout-btn" onclick="window.location.href='checkout.html'"
+                        class="w-full bg-primary text-white py-4 font-bold hover:bg-accent transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
+                        PROCEED TO CHECKOUT
+                    </button>
+                    <p class="text-xs text-gray-400 mt-4 text-center italic">Payments processed securely via Cash on
+                        Delivery.</p>
+                </div>
+            </div>
+
+            <!-- Empty Cart State -->
+            <div id="empty-cart" class="hidden text-center py-20">
+                <div class="mb-8 text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold mb-4">Your cart is empty</h2>
+                <p class="text-gray-500 mb-8">Looks like you haven't added anything to your cart yet.</p>
+                <a href="shop.html"
+                    class="inline-block bg-primary text-white px-10 py-4 font-bold hover:bg-accent transition-colors">START
+                    SHOPPING</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        function renderCart() {
+            const itemsContainer = document.getElementById('cart-items');
+            const cartContainer = document.getElementById('cart-container');
+            const emptyCart = document.getElementById('empty-cart');
+            const subtotalEl = document.getElementById('subtotal');
+            const totalEl = document.getElementById('total');
+            const shippingEl = document.getElementById('shipping');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            if (cart.length === 0) {
+                cartContainer.classList.add('hidden');
+                emptyCart.classList.remove('hidden');
+                return;
+            }
+
+            cartContainer.classList.remove('hidden');
+            emptyCart.classList.add('hidden');
+            itemsContainer.innerHTML = '';
+
+            let subtotal = 0;
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                itemsContainer.innerHTML += `
+                    <div class="flex flex-col sm:flex-row gap-6 p-6 border border-gray-100 shadow-sm relative group">
+                        <button onclick="removeFromCart(${index})" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <div class="w-24 h-24 flex-shrink-0 bg-soft">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold text-lg mb-1">${item.name}</h3>
+                            <p class="text-gray-500 text-sm mb-4">Rs. ${item.price.toLocaleString()}</p>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex border border-gray-200">
+                                    <button onclick="updateQty(${index}, -1)" class="px-3 py-1 hover:bg-gray-100">-</button>
+                                    <span class="px-4 py-1 border-x border-gray-200 text-sm font-semibold">${item.quantity}</span>
+                                    <button onclick="updateQty(${index}, 1)" class="px-3 py-1 hover:bg-gray-100">+</button>
+                                </div>
+                                <span class="font-bold text-primary ml-auto">Rs. ${itemTotal.toLocaleString()}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            const shipping = subtotal > 15000 ? 0 : 500;
+            const total = subtotal + shipping;
+
+            subtotalEl.textContent = 'Rs. ' + subtotal.toLocaleString();
+            shippingEl.textContent = shipping === 0 ? 'FREE' : 'Rs. ' + shipping.toLocaleString();
+            totalEl.textContent = 'Rs. ' + total.toLocaleString();
+        }
+
+        function updateQty(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity < 1) {
+                removeFromCart(index);
+            } else {
+                saveCart();
+                renderCart();
+            }
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+            renderCart();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+</body>
+
+</html>

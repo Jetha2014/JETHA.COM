@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JETHA.COM | Premium Ladies' Fashion & Accessories</title>
+    <meta name="description" content="Discover the latest in premium ladies' fashion at JETHA.COM. Shop luxury handbags, jewelry, and footwear.">
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a1a1a',
+                        accent: '#c5a059',
+                        soft: '#f9f6f2'
+                    },
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-outfit bg-white text-primary overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center text-sm md:text-base">
+            <div class="flex items-center space-x-8">
+                <a href="index.html" class="text-2xl font-playfair font-black tracking-tighter">JETHA<span class="text-accent underline">.COM</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-accent transition-colors">Home</a>
+                    <a href="shop.html" class="hover:text-accent transition-colors">Shop</a>
+                    <a href="shop.html?category=handbags" class="hover:text-accent transition-colors">Handbags</a>
+                    <a href="shop.html?category=jewelry" class="hover:text-accent transition-colors">Jewelry</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="cart.html" class="relative group p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:text-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-accent text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">0</span>
+                </a>
+                <button class="md:hidden p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-soft">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="z-10" data-aos="fade-up">
+                <span class="inline-block py-1 px-3 bg-accent/10 text-accent text-sm font-semibold tracking-wider rounded-full mb-6">NEW COLLECTION 2026</span>
+                <h1 class="text-5xl md:text-7xl font-playfair font-bold leading-tight mb-8">
+                    Elevate Your <br> <span class="italic text-accent">Style Statement</span>
+                </h1>
+                <p class="text-gray-600 text-lg mb-10 max-w-lg">
+                    Discover a curated selection of premium ladies' accessories designed for the modern woman. Elegance in every detail.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="shop.html" class="px-10 py-4 bg-primary text-white font-semibold rounded-none hover:bg-accent transition-all duration-300 text-center">Shop Now</a>
+                    <a href="#featured" class="px-10 py-4 border border-primary font-semibold rounded-none hover:bg-primary hover:text-white transition-all duration-300 text-center">View Trends</a>
+                </div>
+            </div>
+            <div class="relative h-[600px] flex items-center justify-center">
+                <div class="absolute w-[80%] h-[80%] bg-accent/20 rounded-full blur-3xl -z-0"></div>
+                <!-- Placeholder for Hero Image -->
+                <div class="relative z-10 w-full h-full overflow-hidden shadow-2xl skew-y-3">
+                    <img src="https://images.unsplash.com/photo-1549439602-43ebcb23281f?auto=format&fit=crop&q=80&w=1000" alt="Ladies Fashion" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="featured" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-4xl font-playfair font-bold mb-4">Explore Categories</h2>
+                    <p class="text-gray-500 max-w-md">Find the perfect match for your personality from our wide range of premium collections.</p>
+                </div>
+                <a href="shop.html" class="text-accent font-semibold border-b-2 border-accent mt-6 md:mt-0 inline-block">Browse All Products</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Category 1 -->
+                <a href="shop.html?category=handbags" class="group relative overflow-hidden h-96 block border border-gray-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=600" alt="Handbags" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-8">
+                        <h3 class="text-white text-2xl font-bold mb-2">Luxury Handbags</h3>
+                        <p class="text-white/80 text-sm">Timeless designs for every occasion</p>
+                    </div>
+                </a>
+                <!-- Category 2 -->
+                <a href="shop.html?category=jewelry" class="group relative overflow-hidden h-96 block border border-gray-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=600" alt="Jewelry" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-8">
+                        <h3 class="text-white text-2xl font-bold mb-2">Fine Jewelry</h3>
+                        <p class="text-white/80 text-sm">Shine with elegance and grace</p>
+                    </div>
+                </a>
+                <!-- Category 3 -->
+                <a href="shop.html?category=footwear" class="group relative overflow-hidden h-96 block border border-gray-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=600" alt="Footwear" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-8">
+                        <h3 class="text-white text-2xl font-bold mb-2">Designer Footwear</h3>
+                        <p class="text-white/80 text-sm">Walk with confidence and comfort</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-24 bg-primary text-white text-center">
+        <div class="container mx-auto px-6 max-w-2xl">
+            <h2 class="text-4xl font-playfair font-bold mb-6">Join the JETHA Inner Circle</h2>
+            <p class="text-gray-400 mb-10">Subscribe to receive updates, access to exclusive deals, and more.</p>
+            <form class="flex flex-col sm:flex-row gap-0 border border-gray-700">
+                <input type="email" placeholder="Enter your email" class="flex-grow px-6 py-4 bg-transparent outline-none border-b sm:border-b-0 sm:border-r border-gray-700 placeholder-gray-500">
+                <button type="submit" class="px-10 py-4 bg-accent hover:bg-white hover:text-primary transition-colors font-bold whitespace-nowrap">SUBSCRIBE</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-soft py-16 border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="index.html" class="text-2xl font-playfair font-black mb-6 block">JETHA.COM</a>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                        Sri Lanka's premier destination for premium ladies' accessories. Redefining fashion since 2026.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-accent transition-colors">Instagram</a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition-colors">Facebook</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-wider text-xs">Shop</h4>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a href="shop.html" class="hover:text-accent transition-colors">All Products</a></li>
+                        <li><a href="shop.html?category=handbags" class="hover:text-accent transition-colors">Handbags</a></li>
+                        <li><a href="shop.html?category=jewelry" class="hover:text-accent transition-colors">Jewelry</a></li>
+                        <li><a href="shop.html?category=footwear" class="hover:text-accent transition-colors">Footwear</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-wider text-xs">Support</h4>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-accent transition-colors">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Returns & Refunds</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-wider text-xs">Contact</h4>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li>Colombo, Sri Lanka</li>
+                        <li>hello@jetha.com</li>
+                        <li>+94 11 234 5678</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+                <p>&copy; 2026 JETHA.COM. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-accent">Privacy Policy</a>
+                    <a href="#" class="hover:text-accent">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

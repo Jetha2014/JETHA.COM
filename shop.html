@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop All | JETHA.COM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a1a1a',
+                        accent: '#c5a059',
+                        soft: '#f9f6f2'
+                    },
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-outfit bg-white text-primary">
+    <!-- Header (Same as index.html) -->
+    <header class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center text-sm md:text-base">
+            <div class="flex items-center space-x-8">
+                <a href="index.html" class="text-2xl font-playfair font-black tracking-tighter">JETHA<span
+                        class="text-accent underline">.COM</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-accent transition-colors">Home</a>
+                    <a href="shop.html" class="text-accent font-semibold transition-colors">Shop</a>
+                    <a href="shop.html?category=handbags" class="hover:text-accent transition-colors">Handbags</a>
+                    <a href="shop.html?category=jewelry" class="hover:text-accent transition-colors">Jewelry</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="cart.html" class="relative group p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:text-accent transition-colors"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-accent text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <div class="pt-32 pb-12 bg-soft">
+        <div class="container mx-auto px-6 text-center">
+            <h1 id="shop-title" class="text-4xl md:text-5xl font-playfair font-bold mb-4">Our Collection</h1>
+            <p class="text-gray-500 max-w-lg mx-auto">Explore our range of premium ladies' fashion items, carefully
+                selected for excellence.</p>
+        </div>
+    </div>
+
+    <!-- Shop Content -->
+    <main class="py-16">
+        <div class="container mx-auto px-6">
+            <!-- Filters -->
+            <div class="flex flex-wrap gap-4 justify-center mb-16">
+                <button onclick="filterProducts('all')"
+                    class="filter-btn px-6 py-2 border border-primary text-sm font-semibold active bg-primary text-white">All
+                    Items</button>
+                <button onclick="filterProducts('handbags')"
+                    class="filter-btn px-6 py-2 border border-gray-200 text-sm font-semibold hover:border-primary transition-colors">Handbags</button>
+                <button onclick="filterProducts('jewelry')"
+                    class="filter-btn px-6 py-2 border border-gray-200 text-sm font-semibold hover:border-primary transition-colors">Jewelry</button>
+                <button onclick="filterProducts('footwear')"
+                    class="filter-btn px-6 py-2 border border-gray-200 text-sm font-semibold hover:border-primary transition-colors">Footwear</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+                <!-- Products will be injected here via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (Simplified for brevity, can be same as index) -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm text-gray-400">&copy; 2026 JETHA.COM. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Shop-specific logic
+        const grid = document.getElementById('product-grid');
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialCategory = urlParams.get('category') || 'all';
+
+        function renderProducts(filter = 'all') {
+            grid.innerHTML = '';
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center py-20 text-gray-400 italic font-medium">No products found in this category.</p>';
+                return;
+            }
+
+            filtered.forEach(p => {
+                const card = `
+                    <div class="product-card group animate-fade-in opacity-0" style="animation-delay: 0.1s">
+                        <div class="relative overflow-hidden mb-6 aspect-square bg-soft">
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <button onclick="addToCart('${p.id}')" class="absolute bottom-4 left-4 right-4 bg-white py-3 font-semibold text-sm transform translate-y-20 group-hover:translate-y-0 transition-transform duration-300 shadow-xl hover:bg-primary hover:text-white">
+                                ADD TO CART
+                            </button>
+                        </div>
+                        <a href="product-detail.html?id=${p.id}" class="block">
+                            <h3 class="font-bold text-lg mb-2 group-hover:text-accent transition-colors">${p.name}</h3>
+                            <p class="text-gray-500 text-sm mb-3 line-clamp-2">${p.description}</p>
+                            <span class="text-primary font-bold font-outfit uppercase tracking-tighter">${formatPrice(p.price)}</span>
+                        </a>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+
+            // Set animation class after render
+            setTimeout(() => {
+                document.querySelectorAll('.product-card').forEach(c => c.classList.remove('opacity-0'));
+            }, 50);
+        }
+
+        function filterProducts(category) {
+            // Update UI buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.textContent.toLowerCase().includes(category)) {
+                    btn.classList.add('bg-primary', 'text-white');
+                    btn.classList.remove('text-primary');
+                } else {
+                    btn.classList.remove('bg-primary', 'text-white');
+                }
+            });
+
+            if (category === 'all') {
+                document.querySelector('.filter-btn:first-child').classList.add('bg-primary', 'text-white');
+            }
+
+            renderProducts(category);
+
+            // Update Shop Title
+            const title = document.getElementById('shop-title');
+            if (category === 'all') title.textContent = 'Our Collection';
+            else title.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+        }
+
+        // Initial render
+        filterProducts(initialCategory);
+    </script>
+</body>
+
+</html>

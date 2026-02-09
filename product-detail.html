@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | JETHA.COM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a1a1a',
+                        accent: '#c5a059',
+                        soft: '#f9f6f2'
+                    },
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-outfit bg-white text-primary">
+    <!-- Header (Same as index.html) -->
+    <header class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center text-sm md:text-base">
+            <div class="flex items-center space-x-8">
+                <a href="index.html" class="text-2xl font-playfair font-black tracking-tighter">JETHA<span
+                        class="text-accent underline">.COM</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-accent transition-colors">Home</a>
+                    <a href="shop.html" class="hover:text-accent transition-colors">Shop</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="cart.html" class="relative group p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:text-accent transition-colors"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-accent text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-32 pb-24">
+        <div class="container mx-auto px-6">
+            <div id="product-content" class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-start">
+                <!-- Product Image -->
+                <div class="aspect-square bg-soft overflow-hidden">
+                    <img id="p-image" src="" alt="" class="w-full h-full object-cover animate-fade-in">
+                </div>
+
+                <!-- Product Details -->
+                <div class="space-y-8">
+                    <div>
+                        <nav class="text-xs text-gray-400 uppercase tracking-widest mb-4 flex space-x-2">
+                            <a href="index.html" class="hover:text-accent">Home</a>
+                            <span>/</span>
+                            <a href="shop.html" class="hover:text-accent">Shop</a>
+                            <span>/</span>
+                            <span id="p-category-crumb"></span>
+                        </nav>
+                        <h1 id="p-name" class="text-4xl lg:text-5xl font-playfair font-bold mb-4"></h1>
+                        <p id="p-price" class="text-2xl font-bold text-accent font-outfit"></p>
+                    </div>
+
+                    <div class="border-t border-b border-gray-100 py-6">
+                        <p id="p-description" class="text-gray-500 leading-relaxed"></p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex border border-gray-200">
+                                <button onclick="adjustQty(-1)" class="px-4 py-3 hover:bg-gray-100">-</button>
+                                <input type="number" id="p-qty" value="1" min="1"
+                                    class="w-16 text-center outline-none border-x border-gray-200 font-bold">
+                                <button onclick="adjustQty(1)" class="px-4 py-3 hover:bg-gray-100">+</button>
+                            </div>
+                            <button onclick="handleAddToCart()"
+                                class="flex-grow bg-primary text-white py-4 font-bold hover:bg-accent transition-colors">
+                                ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6 pt-10">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm">Free Delivery</h4>
+                                <p class="text-xs text-gray-500">On all orders over Rs. 15,000</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm">Genuine Product</h4>
+                                <p class="text-xs text-gray-500">100% authentic premium quality items</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="mt-32">
+                <h2 class="text-3xl font-playfair font-bold mb-12">You May Also Like</h2>
+                <div id="related-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Related products -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const product = products.find(p => p.id === productId);
+
+        if (!product) {
+            window.location.href = 'shop.html';
+        }
+
+        function loadProduct() {
+            document.title = `${product.name} | JETHA.COM`;
+            document.getElementById('p-image').src = product.image;
+            document.getElementById('p-image').alt = product.name;
+            document.getElementById('p-name').textContent = product.name;
+            document.getElementById('p-price').textContent = formatPrice(product.price);
+            document.getElementById('p-description').textContent = product.description;
+            document.getElementById('p-category-crumb').textContent = product.category;
+
+            // Load related
+            const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+            const rGrid = document.getElementById('related-grid');
+            related.forEach(p => {
+                rGrid.innerHTML += `
+                    <div class="product-card">
+                        <a href="product-detail.html?id=${p.id}" class="block">
+                            <div class="relative overflow-hidden mb-4 aspect-square bg-soft">
+                                <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-sm mb-1">${p.name}</h3>
+                            <span class="text-accent text-sm font-bold uppercase tracking-tighter">${formatPrice(p.price)}</span>
+                        </a>
+                    </div>
+                `;
+            });
+        }
+
+        function adjustQty(change) {
+            const input = document.getElementById('p-qty');
+            let val = parseInt(input.value) + change;
+            if (val < 1) val = 1;
+            input.value = val;
+        }
+
+        function handleAddToCart() {
+            const qty = parseInt(document.getElementById('p-qty').value);
+            for (let i = 0; i < qty; i++) {
+                addToCart(product.id);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProduct);
+    </script>
+</body>
+
+</html>
